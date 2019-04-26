@@ -1,0 +1,24 @@
+body {
+  font-family:Verdana, Geneva, sans-serif; font-size:10pt; 
+}
+
+.landing {
+  display: flex;
+  height: 100%
+}
+
+.fifty {
+  width: 50%
+}
+
+.intro {
+  /* display:flex;
+  flex-shrink: 0;
+  justify-content: center;
+  flex-direction: column */
+}
+
+.flowers {
+  width: 100%
+}
+
