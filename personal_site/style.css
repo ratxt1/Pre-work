@@ -22,3 +22,26 @@ body {
   width: 100%
 }
 
+.fa {
+  padding: 20px;
+  font-size: 70px;
+  /* width: 40px; */
+  text-align: center;
+  text-decoration: none;
+  
+}
+
+.fa-github-square {
+  background: black;
+  color: white
+}
+
+.fa-instagram {
+  background: rgb(255, 196, 3);
+  color: white
+}
+
+.fa-mail-reply {
+  background: red;
+  color: white
+}
