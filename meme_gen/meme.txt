@@ -1,0 +1,17 @@
+//Program psuedo-code outline
+
+Static page stuff (meme_gen name)
+
+Form 
+  Image link
+  top text 
+  bottom text
+
+Images 
+  img1 onClick = delete img
+  img2
+
+
+function CreateMeme {
+  
+}

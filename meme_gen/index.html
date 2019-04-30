@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <form action="" id="memegenerator">
+    Top text:
+    <input type="text" name="toptext">
+    Bottom text:
+    <input type="text" name="bottext">
+    Image link:
+    <input type="text" name="imagelink">
+    <input type="submit" value="Generate Meme">
+  </form>
+  <div id="memes">
+
+  </div>
+
+  <script>
+    function makeMeme(event) {
+      var button = document.createElement("button");
+      var toptext = event.target[0].value
+      button.innerText = toptext;
+      event.target[0].value = ""
+      button.onclick = function () {
+        this.parentElement.removeChild(this);
+      };
+      document.getElementById("memes").appendChild(button)
+  
+      event.preventDefault()
+      
+    }
+    
+    var ele = document.querySelector("#memegenerator")
+    ele.addEventListener("submit", makeMeme, false)
+    
+  </script>
+</body>
+</html>
