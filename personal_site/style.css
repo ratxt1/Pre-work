@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family:Verdana, Geneva, sans-serif; font-size:10pt; 
 }
 
@@ -11,20 +11,24 @@ body {
   width: 50%
 }
 
-.intro {
-  /* display:flex;
+ */
+
+ .intro {
+  display:flex;
   flex-shrink: 0;
-  justify-content: center;
-  flex-direction: column */
+  flex-direction: column;
+  align-content: center
+  
 }
 
 .flowers {
   width: 100%
+
 }
 
 .fa {
-  padding: 20px;
-  font-size: 70px;
+  padding: 10px;
+  font-size: 140px;
   /* width: 40px; */
   text-align: center;
   text-decoration: none;
@@ -37,7 +41,7 @@ body {
 }
 
 .fa-instagram {
-  background: rgb(255, 196, 3);
+  background: blue;
   color: white
 }
 
