@@ -1,51 +1,61 @@
-/* body {
-  font-family:Verdana, Geneva, sans-serif; font-size:10pt; 
-}
-
-.landing {
-  display: flex;
-  height: 100%
-}
-
-.fifty {
-  width: 50%
-}
-
- */
-
- .intro {
-  display:flex;
-  flex-shrink: 0;
-  flex-direction: column;
-  align-content: center
-  
+.row {
+  align-items: center
 }
 
 .flowers {
-  width: 100%
+  width: 100%;
+  max-height: 700px;
+  object-fit: cover;
 
+}
+
+.about {
+ 
 }
 
 .fa {
   padding: 10px;
-  font-size: 140px;
-  /* width: 40px; */
   text-align: center;
   text-decoration: none;
   
 }
 
+.fa:hover {
+  color: grey
+}
+
 .fa-github-square {
-  background: black;
+  background: #333B3C;
   color: white
 }
 
 .fa-instagram {
-  background: blue;
+  background: rgb(202, 143, 241);
   color: white
 }
 
 .fa-mail-reply {
-  background: red;
+  background: rgb(156, 230, 107);
   color: white
+}
+
+.resume {
+  width: 90%;
+  height: 800px;
+  margin: 0 auto;
+  display: block;
+}
+
+.my-primary {
+  padding:10px;
+  /* background-color: #8FE7F1; */
+}
+
+.icons{
+  float: left;
+}
+
+.byline{
+  padding:15px;
+  float:right;
 }
