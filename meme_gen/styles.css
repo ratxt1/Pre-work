@@ -1,12 +1,20 @@
 .meme-top {
-  /* plan is for this and meme bot to have absolute position
-  within a meme-img parent so I don't have to add styles on meme creation */
+ 
+
 }
 
 .meme-bot {
+  position: absolute;
+  bottom: 0px;
+}
 
+.meme {
+  position: relative;
+  /* max-height: 150px;
+  max-width: 150px; */
 }
 
 .meme-img {
-
+  max-height: 150px;
+  max-width: 150px;
 }

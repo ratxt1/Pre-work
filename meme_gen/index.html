@@ -24,16 +24,31 @@
   <script>
     function makeMeme(event) {
       var button = document.createElement("button");
-      var toptext = event.target[0].value
-      button.innerText = toptext;
+      var img = document.createElement("img")
+      var toptext = document.createElement("div")
+      var bottext = document.createElement("div")
+      
+      img.src = "http://www.tompetty.com/sites/g/files/g2000007521/f/Sample-image10-highres.jpg"
+      img.className = "meme-img"
+      
+      toptext.textContent = event.target[0].value
+      toptext.className = "meme-top"
+      bottext.textContent = event.target[1].value
+      bottext.className = "meme-bot"
       event.target[0].value = ""
+      event.target[1].value = ""
+      event.target[2].value = ""
+      
+      button.className = "meme"
       button.onclick = function () {
         this.parentElement.removeChild(this);
       };
+
       document.getElementById("memes").appendChild(button)
-  
+      button.appendChild(img)
+      button.appendChild(toptext)
       event.preventDefault()
-      
+      console.log(button.nodeType, button.nodeName, img.nodeName, img.nodeType)
     }
     
     var ele = document.querySelector("#memegenerator")
