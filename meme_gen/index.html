@@ -22,34 +22,43 @@
   </div>
 
   <script>
+    function deleteMeme(e) {
+        this.parentElement.parentElement.removeChild(this.parentElement);
+        e.preventDefault()
+    };
+    
+
     function makeMeme(event) {
-      var button = document.createElement("button");
-      var img = document.createElement("img")
+      var memediv = document.createElement("div")
+      memediv.className = "meme"
+
+      var input = document.createElement("input")
+      input.type = "image"
+      input.className = "meme-img"
+      input.src = event.target[2].value
+      input.addEventListener("click", deleteMeme)
+
       var toptext = document.createElement("div")
-      var bottext = document.createElement("div")
-      
-      img.src = "http://www.tompetty.com/sites/g/files/g2000007521/f/Sample-image10-highres.jpg"
-      img.className = "meme-img"
-      
-      toptext.textContent = event.target[0].value
+      toptext.textContent = event.target[0].value.toUpperCase()
       toptext.className = "meme-top"
-      bottext.textContent = event.target[1].value
+
+      var bottext = document.createElement("div")
+      bottext.textContent = event.target[1].value.toUpperCase()
       bottext.className = "meme-bot"
+
       event.target[0].value = ""
       event.target[1].value = ""
       event.target[2].value = ""
-      
-      button.className = "meme"
-      button.onclick = function () {
-        this.parentElement.removeChild(this);
-      };
-
-      document.getElementById("memes").appendChild(button)
-      button.appendChild(img)
-      button.appendChild(toptext)
+     
+      document.getElementById("memes").appendChild(memediv)
+      memediv.appendChild(toptext)
+      memediv.appendChild(input)
+      memediv.appendChild(bottext)
       event.preventDefault()
-      console.log(button.nodeType, button.nodeName, img.nodeName, img.nodeType)
+      
     }
+
+    
     
     var ele = document.querySelector("#memegenerator")
     ele.addEventListener("submit", makeMeme, false)

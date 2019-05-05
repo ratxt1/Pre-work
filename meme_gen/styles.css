@@ -1,20 +1,35 @@
-.meme-top {
- 
-
-}
-
-.meme-bot {
-  position: absolute;
-  bottom: 0px;
+#memes {
+  /* display: flex */
 }
 
 .meme {
   position: relative;
-  /* max-height: 150px;
-  max-width: 150px; */
+  max-width: 450px;
+}
+
+.meme-top, .meme-bot {
+  color: white;
+ 
+  font-family: Impact, Arial, Helvetica, sans-serif;
+  font-size: 2em;
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 400px;
+  text-align: center;
+}
+
+.meme-top {
+  top: 10px; 
+}
+
+.meme-bot {
+  bottom: 10px;
 }
 
 .meme-img {
-  max-height: 150px;
-  max-width: 150px;
+  height: 100%;
+  width: 100%;
 }
