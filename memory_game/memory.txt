@@ -1,0 +1,20 @@
+Landing
+  Static stuff about Game
+  Play Button
+  
+
+Game
+  Back/quit button (Returns to landing)
+  Board 
+  Current Score
+
+  Three types of pieces:
+    original (can be clicked, no image)
+    mid-guess (image, can't be clicked, some sort of border)
+    correctly guessed (image, can't be clicked)
+
+Script
+  Randomize board 
+    Array
+
+  

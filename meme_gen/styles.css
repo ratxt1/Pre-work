@@ -1,7 +1,3 @@
-#memes {
-  /* display: flex */
-}
-
 .meme {
   position: relative;
   max-width: 450px;

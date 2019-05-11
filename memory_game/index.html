@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <p>A memorializing marxist memory game</p>
+  <button onclick="startGame()">Play</button>
+
+  <div id="game"></div>
+
+  <script>
+    function knuthShuffle(array) {
+      var currentIndex = array.length, t, i
+
+      while (0 !== currentIndex) {
+        i = Math.floor(Math.random() * currentIndex)
+        currentIndex -= 1
+
+        t = array[currentIndex];
+        array[currentIndex] = array[i]
+        array[i] = t
+      }
+
+      return array;
+    }
+
+    function makeCard(parent) {
+      let cardImage = document.createElement("input")
+      cardImage.type = "image"
+      cardImage.src = cardback
+      cardImage.className = "card-img"
+      cardImage.addEventListener("click", makeGuess)
+      parent.innerHTML = ""
+      parent.appendChild(cardImage)
+    }
+    
+    function makeGuess(e) {
+      let parent = e.target.parentElement
+      let otherCard = document.getElementById("card" + guessCheck)
+      let i = +parent.id.slice(-1)
+
+      let marxist = document.createElement("img")
+      marxist.src = randomPictures[i]
+      marxist.className = "card-img"
+      parent.innerHTML = ""
+      parent.appendChild(marxist)
+      if (guessCheck === -1) {
+        guessCheck = i
+      } else if (randomPictures[i] === randomPictures[guessCheck]) {
+        guessCheck = -1
+      } else {
+        setTimeout(makeCard, 800, parent)
+        setTimeout(makeCard, 800, otherCard)
+       
+        guessCheck = -1
+      }
+      e.preventDefault()
+    }
+
+    let pictures = ["https://static1.squarespace.com/static/5459984ae4b08b58f1c8df7f/t/54ac4359e4b032a504cb4e80/1420575578892/", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Friedrich_Engels_portrait_%28cropped%29.jpg/220px-Friedrich_Engels_portrait_%28cropped%29.jpg", "https://images.jacobinmag.com/wp-content/uploads/2016/01/05181928/maxresdefault-3.jpg", "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTIwNjA4NjMzODgyNTEwODYw/vladimir-lenin-9379007-1-402.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Bundesarchiv_Bild_183-R15068%2C_Leo_Dawidowitsch_Trotzki.jpg/220px-Bundesarchiv_Bild_183-R15068%2C_Leo_Dawidowitsch_Trotzki.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Peter_Kropotkin_circa_1900.jpg/220px-Peter_Kropotkin_circa_1900.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Bakunyinportre.jpg/220px-Bakunyinportre.jpg", "https://upload.wikimedia.org/wikipedia/commons/1/16/AntonPannekoek1908.jpg"]
+    let cardback = "https://cdn.shopify.com/s/files/1/1750/4945/products/onyx_black_metallic_sq_b4dcab09-0db9-4dba-9f00-226c1b2475fa_600x.jpg?v=1547593638"
+    let guessCheck = -1
+    let randomPictures = [] 
+
+    function startGame() {
+      randomPictures = knuthShuffle(pictures.concat(pictures.slice()))
+      let game = document.getElementById("game")
+      game.innerHTML = ""
+      for (let i = 0; i < randomPictures.length; i++) {
+        let card = document.createElement("div")
+        card.className = "cards" 
+        card.id = "card" + i
+        game.appendChild(card)
+
+        makeCard(card)
+
+      }
+    }
+
+  </script>
+</body>
+</html>
