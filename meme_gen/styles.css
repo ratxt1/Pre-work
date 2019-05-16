@@ -1,6 +1,25 @@
+.title {
+  font-family: "Comic Sans MS", Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+#meme-generator {
+  display: flex;
+  flex-direction: column;
+}
+
+#memes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center
+}
+
 .meme {
   position: relative;
-  max-width: 450px;
+  flex: 0 0 450px;
+  padding: 3px;
+  margin: 3px;
 }
 
 .meme-top, .meme-bot {
@@ -26,6 +45,6 @@
 }
 
 .meme-img {
-  height: 100%;
+  display: block;
   width: 100%;
 }

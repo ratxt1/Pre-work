@@ -6,19 +6,51 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-  <form action="" id="memegenerator">
-    Top text:
-    <input type="text" name="toptext">
-    Bottom text:
-    <input type="text" name="bottext">
-    Image link:
-    <input type="text" name="imagelink">
-    <input type="submit" value="Generate Meme">
-  </form>
-  <div id="memes">
+  <h3 class="title mt-3 mb-4 text-center">Last Night I Dreamt That Somebody Loved Memes</h3>
+    
+  <form class="container" action="" id="meme-generator">
+    <div class="form-group row">
+      <label for="toptext" class="col-sm-2 col-form-label">Top text: </label>
+      <div class="col-sm-8">
+        <input class="form-control" id="toptext" type="text" name="toptext" placeholder="Top text here">
+      </div>
+            </div>
+    <div class="form-group row">
+      <label for="bottext" class="col-sm-2 col-form-label">Bottom text: </label>
+      <div class="col-sm-8">
+        <input type="text" name="bottext" class="form-control" id="bottext" placeholder="Bottom text here">
+      </div>
+        </div>
+    <div class="form group row">
+      <label id="imageLinkLabel" for="imagelink" class="col-sm-2 col-form-label">Image link: </label>
+      <div class="col-sm-8">
+        <input type="text" name="imagelink" class="form-control" id="imagelink" placeholder="Image URL here">
 
+      </div>  
+      <div id="errorMessage" class="col-sm-12 justify-content-center" style="display:none">
+        <small class="text-danger">
+          link not a valid image file
+        </small>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <div class="col-sm-10 mt-2">
+        <input class="btn btn-primary" type="submit" value="Generate Meme">
+      </div>
+    </div>
+   
+  </form>
+  
+  <div class="container">
+    <div id="memes" class="justify-content-center">
+        
+    </div>
+    
+      
   </div>
 
   <script>
@@ -27,8 +59,25 @@
         e.preventDefault()
     };
     
+    function resetText(event) {
+      event.target[0].value = ""
+      event.target[1].value = ""
+      event.target[2].value = ""
+    }
+
+    function toggleError(bool) {
+      let x = document.getElementById("errorMessage")
+      if (bool) {
+        x.style.display = "flex";
+      } else {
+        x.style.display = "none"
+      }
+    }
 
     function makeMeme(event) {
+      
+      let error = false
+
       var memediv = document.createElement("div")
       memediv.className = "meme"
 
@@ -36,6 +85,12 @@
       input.type = "image"
       input.className = "meme-img"
       input.src = event.target[2].value
+      console.log(input)
+
+      var image = document.createElement("img")
+      image.src = event.target[2].value
+      console.log(image)
+
       input.addEventListener("click", deleteMeme)
 
       var toptext = document.createElement("div")
@@ -46,21 +101,20 @@
       bottext.textContent = event.target[1].value.toUpperCase()
       bottext.className = "meme-bot"
 
-      event.target[0].value = ""
-      event.target[1].value = ""
-      event.target[2].value = ""
+      resetText(event)
      
       document.getElementById("memes").appendChild(memediv)
       memediv.appendChild(toptext)
       memediv.appendChild(input)
       memediv.appendChild(bottext)
+      toggleError(false)
       event.preventDefault()
       
     }
 
     
     
-    var ele = document.querySelector("#memegenerator")
+    var ele = document.querySelector("#meme-generator")
     ele.addEventListener("submit", makeMeme, false)
     
   </script>
