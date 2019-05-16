@@ -91,7 +91,9 @@
       input.type = "image"
       input.className = "meme-img"
       input.onerror = function() {
-        this.src = "./apples.jpg"
+        if (this.src != ".apples.jpeg") {
+          this.src = "./apples.jpeg"
+        }        
         toggleError(true)
       }
       input.src = event.target[2].value
