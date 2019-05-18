@@ -17,4 +17,8 @@ Script
   Randomize board 
     Array
 
-  
+to do:
+crop images, make images folder
+css to make it a 4x4 grid (and also shrink if window shrinks)
+
+fajsdklf;ahgaldsk;fds
