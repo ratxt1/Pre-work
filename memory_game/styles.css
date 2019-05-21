@@ -1,3 +1,24 @@
+
+.title {
+  font-family: 'Russo One', sans-serif;
+
+}
+
+.card {
+  
+}
+
+#tracker {
+  font-size: 20px;
+}
+
+#game {
+ 
+}
+
+.new-game {
+  width: 200px;
+}
+
 .card-img {
-  max-width: 200px;
 }

@@ -6,13 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-  <p>A memorializing marxist memory game</p>
-  <button onclick="startGame()">Play</button>
-
-  <div id="game"></div>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+  <body>
+    <div class="container text-center" id="page">
+      <h3 class="title mb-4 mt-3">A Memфrializing Marxist Memфry Game</h3>
+      
+      <div class="container" id="game"></div>
+      
+      <button class="" onclick="startGame()"><img class="new-game" src="./newGameButton.png" alt="New Game"></button>
+      <div id="highScore"></div>
+    </div>
+   
   <script>
     function knuthShuffle(array) {
       var currentIndex = array.length, t, i
@@ -42,7 +47,11 @@
     function makeGuess(e) {
       let parent = e.target.parentElement
       let otherCard = document.getElementById("card" + guessCheck)
-      let i = +parent.id.slice(-1)
+      let i = +parent.id.slice(4)
+
+      let tracker = document.getElementById("tracker")
+      tracker.innerText = +tracker.innerText + 1
+      globalTracker = tracker.innerText
 
       let marxist = document.createElement("img")
       marxist.src = randomPictures[i]
@@ -53,33 +62,72 @@
         guessCheck = i
       } else if (randomPictures[i] === randomPictures[guessCheck]) {
         guessCheck = -1
+        guessedCards += 2
+        if (guessedCards === 16) {
+          setTimeout(winGame, 400)
+        }
       } else {
         setTimeout(makeCard, 800, parent)
         setTimeout(makeCard, 800, otherCard)
        
         guessCheck = -1
       }
+
+      
+
       e.preventDefault()
     }
-
-    let pictures = ["https://static1.squarespace.com/static/5459984ae4b08b58f1c8df7f/t/54ac4359e4b032a504cb4e80/1420575578892/", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Friedrich_Engels_portrait_%28cropped%29.jpg/220px-Friedrich_Engels_portrait_%28cropped%29.jpg", "https://images.jacobinmag.com/wp-content/uploads/2016/01/05181928/maxresdefault-3.jpg", "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTIwNjA4NjMzODgyNTEwODYw/vladimir-lenin-9379007-1-402.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Bundesarchiv_Bild_183-R15068%2C_Leo_Dawidowitsch_Trotzki.jpg/220px-Bundesarchiv_Bild_183-R15068%2C_Leo_Dawidowitsch_Trotzki.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Peter_Kropotkin_circa_1900.jpg/220px-Peter_Kropotkin_circa_1900.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Bakunyinportre.jpg/220px-Bakunyinportre.jpg", "https://upload.wikimedia.org/wikipedia/commons/1/16/AntonPannekoek1908.jpg"]
-    let cardback = "https://cdn.shopify.com/s/files/1/1750/4945/products/onyx_black_metallic_sq_b4dcab09-0db9-4dba-9f00-226c1b2475fa_600x.jpg?v=1547593638"
+    
+    let pictures = ["./marxists/Marx.jpg", "./marxists/Engels.jpg", "./marxists/Luxemburg.jpg", "./marxists/Lenin.jpg", "./marxists/Trotsky.jpg", "./marxists/Pannekoek.jpg", "./marxists/Bakunin.jpg", "./marxists/Kropotkin.jpg"]
+    let cardback = "./cardback.jpg"
     let guessCheck = -1
     let randomPictures = [] 
+    let guessedCards = 0
+    let globalTracker = 0
 
     function startGame() {
+      guessedCards = 0
       randomPictures = knuthShuffle(pictures.concat(pictures.slice()))
+      console.log(randomPictures)
       let game = document.getElementById("game")
       game.innerHTML = ""
+      let row = document.createElement("div")
+      row.className = "row"
+      game.appendChild(row)
       for (let i = 0; i < randomPictures.length; i++) {
+        if (i % 4 === 0 && i !== 0) {
+          row = document.createElement("div")
+          row.className = "row"
+          game.appendChild(row)
+        }
         let card = document.createElement("div")
-        card.className = "cards" 
+        card.className = "cards col-3" 
         card.id = "card" + i
-        game.appendChild(card)
-
+        row.appendChild(card)
         makeCard(card)
-
       }
+      row = document.createElement("div")
+      row.className = "row"
+      game.appendChild(row)
+
+      let tracker = document.createElement("div")
+      tracker.className = "col-12 mt-mb-3"
+      tracker.id = "tracker"
+      tracker.innerText = "0"
+      row.appendChild(tracker)
+
+      highScore = document.getElementById("highScore")
+    }
+
+    function winGame() {
+      highScore = document.getElementById("highScore")
+      currentHighScore = +highScore.innerText.slice(12)
+      if (currentHighScore > globalTracker || currentHighScore === 0) {
+        highScore.innerText = "High Score: " + globalTracker
+      }
+      
+
+      setTimeout(startGame, 400)
     }
 
   </script>
