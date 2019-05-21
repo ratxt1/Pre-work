@@ -67,8 +67,8 @@
           setTimeout(winGame, 400)
         }
       } else {
-        setTimeout(makeCard, 800, parent)
-        setTimeout(makeCard, 800, otherCard)
+        setTimeout(makeCard, 600, parent)
+        setTimeout(makeCard, 600, otherCard)
        
         guessCheck = -1
       }
@@ -78,7 +78,7 @@
       e.preventDefault()
     }
     
-    let pictures = ["./marxists/Marx.jpg", "./marxists/Engels.jpg", "./marxists/Luxemburg.jpg", "./marxists/Lenin.jpg", "./marxists/Trotsky.jpg", "./marxists/Pannekoek.jpg", "./marxists/Bakunin.jpg", "./marxists/Kropotkin.jpg"]
+    let pictures = ["./marxists/Marx.jpg", "./marxists/Engels.jpg", "./marxists/Luxemburg.jpg", "./marxists/Lenin.jpg", "./marxists/Trotsky.jpg", "./marxists/Pannekoek.jpg", "./marxists/Bakunin.jpg", "./marxists/Kropotkin.jpg", "./marxists/Guillotine.png", "./marxists/Zedong.jpg", "./marxists/Guevara.png"]
     let cardback = "./cardback.jpg"
     let guessCheck = -1
     let randomPictures = [] 
@@ -87,7 +87,8 @@
 
     function startGame() {
       guessedCards = 0
-      randomPictures = knuthShuffle(pictures.concat(pictures.slice()))
+      let randomSlice = knuthShuffle(pictures).slice(0, 8)
+      randomPictures = knuthShuffle(randomSlice.concat(randomSlice.slice()))
       console.log(randomPictures)
       let game = document.getElementById("game")
       game.innerHTML = ""
